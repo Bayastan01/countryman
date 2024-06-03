@@ -1,0 +1,82 @@
+@import 'shared/style/var.scss';
+
+.app {
+  &__container {
+    min-height: 100vh;
+    // padding-top: $header-height;
+    position: relative;
+    // color: rgb(159, 168, 188);
+    background-color: rgb(255, 255, 255);
+    // font-size: 16px;a
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+      &::before {
+        content: '';
+        z-index: -1;
+        opacity: 0;
+        transition: all 0.3s linear 0s;
+      }
+      &_side-menu-opened {
+        &::before {
+          content: '';
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 8;
+          opacity: 1;
+          top: 0;
+          transition: all 0.3s linear 0s;
+        }
+      }
+  }
+
+  &__main {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    &-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 100vh;
+      margin-left: auto;
+    }
+
+    &-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+      width: 100%;
+      padding: 0;
+    }
+
+    &_isAuth &-inner {
+      transition: all 0.3s ease-in-out 0s;
+      width: calc(100% - $sideMenu-width-closed);
+      @include max-width-tablet {
+        width: 100%;
+      }
+      &_isSideMenuOpened {
+        width: calc(100% - $sideMenu-width-closed);
+        @include max-width-tablet {
+          width: 100%;
+        }
+      }
+    }
+
+    &_isAuth &-content {
+      padding: $content-padding;
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export type RolesTypes = 'P' | 'C' | 'A' | 'SU' | 'O';

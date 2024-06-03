@@ -1,0 +1,57 @@
+@import 'shared/style/colors.scss';
+
+$main-media-width: 475px;
+$tablet-media-width: 767px;
+$desktop-media-width: 1024px;
+
+$content-padding: 10px;
+
+$header-height: 3.5rem;
+$sideMenu-width: 14.25rem;
+$sideMenu-width-closed: 4.25rem;
+
+@mixin mq-font-by-max-width($fontSize, $maxWidth) {
+  @media only screen and (max-width: $maxWidth) {
+    html {
+      font-size: $fontSize;
+    }
+  }
+}
+
+@mixin min-width-desktop() {
+  @media only screen and (min-width: $desktop-media-width) {
+    @content;
+  }
+}
+
+@mixin max-width-desktop() {
+  @media only screen and (max-width: $desktop-media-width) {
+    @content;
+  }
+}
+
+@mixin min-width-tablet() {
+  @media only screen and (min-width: $tablet-media-width) {
+    @content;
+  }
+}
+
+@mixin max-width-mobile() {
+  @media only screen and (max-width: $main-media-width) {
+    @content;
+  }
+}
+
+@mixin min-width-mobile() {
+  @media only screen and (min-width: $main-media-width) {
+    @content;
+  }
+}
+
+@mixin max-width-tablet() {
+  @media only screen and (max-width: $tablet-media-width) {
+    @content;
+  }
+}
+
+// @include mq-font-by-max-width(12px, 400px);
