@@ -1,18 +1,26 @@
 @import 'shared/style/var.scss';
 
 .header {
-  background: rgb(0, 0, 0);
-  color: #fff;
-  height: $header-height;
+  
+  position: fixed;
+  top: 0;
+  left: 65px;
+  right: 0;
+  height: 60px;
+  background-color: #333;
+  color: white;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
   @include max-width-tablet {
     // padding: 0 0.5rem;
+    left: 0px;
   }
  
   &__left {
     display: flex;
+    align-items: center;
     @include max-width-tablet {
     padding-left: 0%;
     }

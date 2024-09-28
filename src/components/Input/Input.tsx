@@ -7,6 +7,7 @@ import block from 'bem-cn';
 import { Input as RInput, InputGroup } from 'rsuite';
 import { selectLocaleDict } from '../../features/locale/selectors';
 import SearchIcon from '@rsuite/icons/Search';
+import CloseIcon from '@rsuite/icons/Close';
 // import { ReactComponent as EyeIcon } from '../../shared/image/back.svg';
 // import { ReactComponent as EyeSlashIcon } from '../../shared/image/back.svg';
 
@@ -52,13 +53,14 @@ export const Input: React.FC<IInputProps> = ({
   return (
     <div className={b()}>
       <RInput
-        type={type}
+       type={type}
         value={value}
         onChange={onChangeCallback}
         placeholder={placeholder}
         required={isRequired}
         className={b()}
         {...props}
+
       />
       {/* <div className={b('error')}>{errorLocale[currErr?.code]}&nbsp;</div> */}
     </div>
@@ -95,6 +97,41 @@ export const InputPassword: React.FC<IInputProps> = ({
   );
 };
 
+// export const InputSearch: React.FC<IInputProps> = ({
+//   label,
+//   placeholder,
+//   value,
+//   type = 'text',
+//   onChange,
+//   isRequired = false,
+//   errors,
+//   ...props
+// }) => {
+//   const b = block('inputSearch');
+//   const onChangeCallback = useCallback(
+//     (val: string, e: any) => {
+//       onChange(e, val);
+//     },
+//     [onChange],
+//   );
+//   return (
+//     <div className={b()}>
+//       <InputGroup.Button >
+//         <SearchIcon />
+//       </InputGroup.Button>
+//       <Input
+//         type={type}
+//         value={value}
+//         onChange={onChangeCallback}
+//         placeholder={placeholder}
+//         required={isRequired}
+//         className={b('input')}
+//         {...props}
+//       />
+//     </div>
+//   );
+// };
+
 export const InputSearch: React.FC<IInputProps> = ({
   label,
   placeholder,
@@ -106,27 +143,49 @@ export const InputSearch: React.FC<IInputProps> = ({
   ...props
 }) => {
   const b = block('inputSearch');
+  const errorLocale = useSelector(selectLocaleDict, shallowEqual).errorStatusMessage;
+  const [x,setX]=useState(false)
   const onChangeCallback = useCallback(
     (val: string, e: any) => {
+    console.log(val)
+
       onChange(e, val);
+      if(val.length > 0 ){
+        setX(true)
+      }else{
+        setX(false)
+      }
     },
     [onChange],
   );
+
+  const currErr = useMemo(() => {
+    const { name } = props;
+    return errors?.listOfErrors.find((err: { field: string | undefined; }) => err.field === name);
+  }, [errors, props.name, errorLocale]);
+
   return (
-    <InputGroup inside className={b()}>
-      <InputGroup.Button >
+    <div className={b().toString()}>
+       <InputGroup.Button >
         <SearchIcon />
       </InputGroup.Button>
       <RInput
-        type={type}
+       type={type}
         value={value}
         onChange={onChangeCallback}
         placeholder={placeholder}
         required={isRequired}
-        className={b('input')}
+        className={b('input').toString()}
         {...props}
       />
-    
-    </InputGroup>
+      {/* <div className={b('error')}>{errorLocale[currErr?.code]}&nbsp;</div> */}
+      {
+        x ? (
+            <InputGroup.Button  >
+        <CloseIcon />
+      </InputGroup.Button>
+        ) : null
+      }
+    </div>
   );
 };

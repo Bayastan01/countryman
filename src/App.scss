@@ -17,37 +17,37 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-      &::before {
-        content: '';
-        z-index: -1;
-        opacity: 0;
-        transition: all 0.3s linear 0s;
-      }
-      &_side-menu-opened {
-        &::before {
-          content: '';
-          width: 100%;
-          height: 100%;
-          position: fixed;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 8;
-          opacity: 1;
-          top: 0;
-          transition: all 0.3s linear 0s;
-        }
-      }
+    //   &::before {
+    //     content: '';
+    //     z-index: -1;
+    //     opacity: 0;
+    //     transition: all 0.3s linear 0s;
+    //   }
+    //   &_side-menu-opened {
+    //     &::before {
+    //       content: '';
+    //       width: 100%;
+    //       height: 100%;
+    //       position: fixed;
+    //       background: rgba(0, 0, 0, 0.5);
+    //       z-index: 8;
+    //       opacity: 1;
+    //       top: 0;
+    //       transition: all 0.3s linear 0s;
+    //     }
+    //   }
   }
 
   &__main {
     position: relative;
-    display: flex;
+    display: grid;
     width: 100%;
-
+    
     &-inner {
       position: relative;
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 100vh;
       min-height: 100vh;
       margin-left: auto;
     }
@@ -58,17 +58,21 @@
       flex-direction: column;
       flex: 1 0 auto;
       width: 100%;
-      padding: 0;
+      margin-top: 60px;
+      margin-left: 65px;
+      @include max-width-tablet {
+        margin-left: 0px;
+      }
     }
 
     &_isAuth &-inner {
       transition: all 0.3s ease-in-out 0s;
-      width: calc(100% - $sideMenu-width-closed);
+      // width: calc(100% - $sideMenu-width-closed);
       @include max-width-tablet {
         width: 100%;
       }
       &_isSideMenuOpened {
-        width: calc(100% - $sideMenu-width-closed);
+        width: calc(100% - $sideMenu-width);
         @include max-width-tablet {
           width: 100%;
         }

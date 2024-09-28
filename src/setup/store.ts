@@ -23,8 +23,6 @@ const persistConfig: PersistConfig<IApplicationState> = {
 type ConfigureStore = {
   store: ReturnType<typeof configureStore>;
   persistor: Persistor
-
-
 };
 
 export function configureAppStore(): ConfigureStore {
