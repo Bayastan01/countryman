@@ -23,7 +23,6 @@ const App: React.FC<MyComponentProps> = ({children}) => {
         <div className={b('main', { isAuth })}>
         <Header />
              <SideMenu/>
-            
             <Suspense fallback={<Loader center size="md" content="loading..." vertical />}>
              <main className={b('main-content')}>{children}</main>
             </Suspense>

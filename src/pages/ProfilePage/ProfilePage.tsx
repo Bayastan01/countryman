@@ -1,6 +1,8 @@
 import { block } from 'bem-cn'
 import React from 'react'
-const b = block('home-page')
+import './ProfilePage.scss';
+const b = block('profile-page')
+
 const ProfilePage: React.FC = () =>
    (
     <div className={b()}>

@@ -1,14 +1,17 @@
-import ProtectedRoute from 'components/helpers/ProtectedRoute/ProtectedRoute';
-import { Route } from 'react-router-dom';
-import HomePage from '../../pages/HomePage/HomePage'; // Обычный импорт
-
-export const homePageRoute = '/';
+import { lazy } from 'react';
+import { Route, Switch } from 'react-router-dom'
+import ProtectedRoute from 'components/helpers/ProtectedRoute/ProtectedRoute'
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage')); // Correct lazy import
+export const homePageRoute = '/home'
 export class HomePageModule {
   getRoutes() {
     return (
-      <Route exact path={homePageRoute} key="home">
-        <ProtectedRoute path={homePageRoute} component={HomePage} />
+      <Route key="/home" path="/home">
+        <Switch>
+          <ProtectedRoute key={homePageRoute} path={homePageRoute}  component={HomePage} />
+        </Switch>
       </Route>
-    );
+    )
   }
 }
+

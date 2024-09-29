@@ -1,10 +1,14 @@
 import { block } from 'bem-cn'
 import React from 'react'
-const b = block('home-page')
+import './SearchPage.scss'
+const b = block('search-page')
 const SearchPage: React.FC = () =>
    (
     <div className={b()}>
-        <div className={b('title')}>SearchPage</div>
+        <h1>Pofile</h1>
+        <div className={b('title')}>Что вы хотите сделать?</div>
+        <div className={b('button')}>
+        </div>
     </div>
   )
 
