@@ -22,7 +22,8 @@
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
     "rsuite": "^5.61.0",
-    "sass": "^1.72.0"
+    "sass": "^1.72.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
