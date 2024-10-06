@@ -57,7 +57,7 @@
       display: flex;
       flex-direction: column;
       flex: 1 0 auto;
-      width: 100%;
+      // width: 100%;
       margin-top: 60px;
       margin-left: 65px;
       @include max-width-tablet {
@@ -80,7 +80,7 @@
     }
 
     &_isAuth &-content {
-      padding: $content-padding;
+      // padding: $content-padding;
     }
   }
 }

@@ -1,0 +1,43 @@
+.handle-filter {
+    &__handle_modal {
+        display: flex;
+        align-items: center;
+    }
+
+    &__modal {
+        display: flex; /* Используем flex для центрирования */
+        justify-content: center;
+        align-items: center;
+        position: fixed; /* Остается на месте */
+        z-index: 101; /* На переднем плане */
+        left: 0;
+        top: 0;
+        width: 100%; /* Полная ширина */
+        height: 100%; /* Полная высота */
+        background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон */
+    }
+
+    &__modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Ширина модального окна */
+        max-width: 600px; /* Максимальная ширина модального окна */
+        margin: auto; /* Центрирование по горизонтали */
+        border-radius: 5px; /* Скругление углов */
+    }
+
+    &__close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer; /* Курсор-указатель */
+    }
+
+    &__close:hover,
+    &__close:focus {
+        color: black; /* Цвет при наведении */
+        text-decoration: none;
+    }
+}

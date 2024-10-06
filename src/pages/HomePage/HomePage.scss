@@ -1,30 +1,35 @@
-.home-page {
-    min-height: 100vh;
-    display: flex;
+.post-list {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  padding: 20px;
+
+  &__header {
     text-align: center;
-    flex-direction: column;
-    padding: 0 0.3125rem;
+    margin: 5px;
+    justify-content: space-between;
+    display: flex;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+
     h1 {
-      text-align: center;
-      font-size: 1.875rem;
-      color: #ffffff;
-      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 10px;
     }
-    &__title {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
-    &__hr {
-      width: 100vw;
-      margin: 1.5rem 0;
-      border-bottom: 0.0625rem solid #e2e8f0;
-      text-align: center;
-    }
-    &__button {
-      width: 100%;
-      button {
-        width: 12.5rem !important;
-      }
+
+    p {
+      font-size: 1rem;
+      color: #666;
     }
   }
-  
+
+  &__posts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}

@@ -16,10 +16,8 @@ const Post = () => {
   return (
     <div className={b()}>
       <SliderPublic />
-
       <div className={b('content')}>
         <h3>All in New York City</h3>
-        
         <div className={b('avatar-section')}>
           <AvatarGroup spacing={6}>
             <Avatar src="https://i.pravatar.cc/150?u=2" circle size="sm" />
@@ -51,7 +49,6 @@ const Post = () => {
           </a>
         </div>
       </div>
-
       <div className={b('icons')}>
         <div className={b('icon', 'heart')}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
