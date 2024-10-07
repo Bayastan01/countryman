@@ -18,10 +18,7 @@ const posts = [
 const HomePage: React.FC = () => {
   return (
     <div className={b()}>
-      <div className={b('header')}>
-        <h1>Квартиры {}</h1>
         <HandleFilter/>
-      </div>
       <div className={b('posts')}>
         {posts.map((post) => (
           <Post key={post.id} post={post} />

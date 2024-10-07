@@ -1,54 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { block } from 'bem-cn';
-import './HandleFilter.scss';
-import SettingHorizontalIcon from '@rsuite/icons/SettingHorizontal';
-
-const b = block('handle-filter');
-
-function App({ onClose }) {
-    return (
-        <div className={b('modal')}>
-            <div className={b('modal-content')}>
-                <span className={b('close')} onClick={onClose}>&times;</span>
-                <h2>Это модальное окно</h2>
-                <p>Содержимое модального окна.</p>
-            </div>
-        </div>
-    );
-}
-
+import React, { useState } from 'react';
+import { SelectPicker, Button, InputGroup, Icon, Input } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 const HandleFilter = () => {
-    const [isOpen, setIsOpen] = useState(false);
+  // State to manage the selected values
+  const [propertyType, setPropertyType] = useState('Квартира');
+  const [transactionType, setTransactionType] = useState('Купить');
+  const [propertyStatus, setPropertyStatus] = useState('Вторичка, новостройки');
+  const [rooms, setRooms] = useState(null);
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+  // Options for dropdowns
+  const propertyTypeOptions = [
+    { label: 'Квартира', value: 'Квартира' },
+    { label: 'Дом', value: 'Дом' },
+    { label: 'Коммерческая', value: 'Коммерческая' },
+  ];
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+  const transactionTypeOptions = [
+    { label: 'Купить', value: 'Купить' },
+    { label: 'Аренда', value: 'Аренда' },
+  ];
 
-    useEffect(() => {
-        if (isOpen) {
-            document.body.classList.add('no-scroll'); // Отключаем прокрутку
-        } else {
-            document.body.classList.remove('no-scroll'); // Включаем прокрутку
-        }
-    }, [isOpen]);
+  const propertyStatusOptions = [
+    { label: 'Вторичка', value: 'Вторичка' },
+    { label: 'Новостройки', value: 'Новостройки' },
+    { label: 'Вторичка, новостройки', value: 'Вторичка, новостройки' },
+  ];
 
-    return (
-        <>
-            <div className={b('handle_modal')}>
-                <button
-                    onClick={openModal}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                >
-                    <SettingHorizontalIcon style={{ fontSize: '24px', color: 'black' }} />
-                </button>
-                {isOpen && <App onClose={closeModal} />}
-            </div>
-        </>
-    );
+  const roomsOptions = [
+    { label: '1 комната', value: 1 },
+    { label: '2 комнаты', value: 2 },
+    { label: '3 комнаты', value: 3 },
+    { label: '4+ комнаты', value: 4 },
+  ];
+
+  return (
+    <div style={{ padding: '20px', backgroundColor: '#f5f5f5', maxWidth: '100%' }}>
+      <h3>Недвижимость</h3>
+      <InputGroup style={{display:'flex',justifyContent:'start', flexWrap: 'wrap',border:'none', outline: 'none',
+      border: 'none'}}>
+        <SelectPicker
+          data={propertyTypeOptions}
+          value={propertyType}
+          onChange={setPropertyType}
+          placeholder="Тип недвижимости"
+          style={{ width: 150, margin:2}}
+        />
+        <SelectPicker
+          data={transactionTypeOptions}
+          value={transactionType}
+          onChange={setTransactionType}
+          placeholder="Тип сделки"
+          style={{ width: 150, margin:2}}
+        />
+        <SelectPicker
+          data={propertyStatusOptions}
+          value={propertyStatus}
+          onChange={setPropertyStatus}
+          placeholder="Статус"
+          style={{ width: 150, margin:2}}
+        />
+        <SelectPicker
+          data={roomsOptions}
+          value={rooms}
+          onChange={setRooms}
+          placeholder="Комнаты"
+          style={{ width: 150, margin:2}}
+        />
+        
+        <Button appearance="primary"  style={{ width: 150, margin:2}} >Показать объявления</Button>
+      </InputGroup>
+    </div>
+  );
 };
 
 export default HandleFilter;
