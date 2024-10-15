@@ -1,5 +1,4 @@
-
-// Остальные стили для slider-card остаются как в вашем примере
+@import 'shared/style/var.scss';
 .slider-card {
   display: flex;
   flex-direction: column;
@@ -16,8 +15,7 @@
     background-color: #fff;
 
     h3 {
-      margin: 3px 0;
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #000000;
       font-weight: 400;
     }
@@ -56,7 +54,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-
+    text-align: start;
     span {
       font-size: 12px;
     }
@@ -86,8 +84,9 @@
   }
 
   @media (max-width: 768px) {
-    width: 100%;
-
+    // width: 100%;
+    width: 190px;
+    // max-height: auto;
     &__content {
       text-align: center;
     }

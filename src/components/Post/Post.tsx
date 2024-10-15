@@ -10,7 +10,7 @@ import block from 'bem-cn';
 const b = block('slider-card');
 
 const Post = () => {
-  const phoneNumber = "+79916507859";  // Replace with the actual phone number
+  const phoneNumber = "++7 903 134-29-12";  // Replace with the actual phone number
   const message = "Здраствуйте, eще актуально";  // Optional predefined message
 
   return (
@@ -18,12 +18,12 @@ const Post = () => {
       <SliderPublic />
       <div className={b('content')}>
         <h3>All in New York City</h3>
-        <div className={b('avatar-section')}>
+        {/* <div className={b('avatar-section')}>
           <AvatarGroup spacing={6}>
             <Avatar src="https://i.pravatar.cc/150?u=2" circle size="sm" />
           </AvatarGroup>
           <p className={b('author')}>@DarellKenedy USA</p>
-        </div>
+        </div> */}
         <p className={b('description')}>
           Explore New York City with confidence with an exclusive travel guide by Darell Kenedy.
          
@@ -39,7 +39,7 @@ const Post = () => {
           </svg>
           </a>
           <a
-            href={`https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`}
+        href={`https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`}
             target="_blank"
             rel="noopener noreferrer"
           >

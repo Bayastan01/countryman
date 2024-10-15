@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './SliderPublic.scss';  // Ваши стили SCSS
 
 import block from 'bem-cn';
-const b = block('carousel-container');
+const b = block('carouselContainer');
 
 
 const images = [
@@ -29,8 +29,8 @@ const SliderPublic = () => {
     <div className={b()}>
       <Slider {...settings}>
         {images.map((src, index) => (
-          <div key={index} className="carousel-slide">
-            <img src={src} alt={`Slide ${index + 1}`} />
+          <div key={index} className={b('carouselSlide')}>
+            <img className={b('img')} src={src} alt={`Slide ${index + 1}`} />
           </div>
         ))}
       </Slider>

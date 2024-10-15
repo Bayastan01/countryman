@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SelectPicker, Button, InputGroup, Icon, Input } from 'rsuite';
+import { SelectPicker, Button, InputGroup } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 const HandleFilter = () => {
   // State to manage the selected values
@@ -37,13 +37,13 @@ const HandleFilter = () => {
     <div style={{ padding: '20px', backgroundColor: '#f5f5f5', maxWidth: '100%' }}>
       <h3>Недвижимость</h3>
       <InputGroup style={{display:'flex',justifyContent:'start', flexWrap: 'wrap',border:'none', outline: 'none',
-      border: 'none'}}>
+    }}>
         <SelectPicker
           data={propertyTypeOptions}
           value={propertyType}
           onChange={setPropertyType}
           placeholder="Тип недвижимости"
-          style={{ width: 150, margin:2}}
+          style={{ width: 150, margin:2,border:'1px solit black'}}
         />
         <SelectPicker
           data={transactionTypeOptions}
