@@ -32,7 +32,7 @@ export const sideMenuList: ILinkMenuBlock[] = [
     title: ['common', 'mainMenu'],
     items: [
       { icon: HomeIcon,route: homePageRoute,textIdent: ['common', 'home'],},
-      { icon: SearchIcon, route: searchPageRoute, textIdent:['common','search'], },
+      { icon: SearchIcon, route: searchPageRoute, textIdent:['common','explore'], },
       { icon: AddIcon, route: addPageRoute, textIdent: ['common','addPost'], },
       { icon: FavoriteIcon, route: favoritePageRoute, textIdent: ['common','favorite'], },
       { icon: ProfileIcon, route: profilePageRoute, textIdent: ['common','profile'], },

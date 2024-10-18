@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .category {
+    padding: 10px 15px;
+    border: none;
+    background-color: #433f3f;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar .categories {
+      display: none;
+    }
+  }
+  
