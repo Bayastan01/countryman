@@ -12,6 +12,7 @@ import { addPageRoute } from '../../../modules/AddPage/AddPage'
 import { searchPageRoute } from '../../../modules/SearchPage/SearchPage'
 import { favoritePageRoute } from '../../../modules/FavoritePage/FavoritePage'
 
+import { actions as newPostActions } from '../../../features/newPost';
 
 interface ILinkMenuListItem {
   route?: string;
@@ -31,11 +32,17 @@ export const sideMenuList: ILinkMenuBlock[] = [
   {
     title: ['common', 'mainMenu'],
     items: [
-      { icon: HomeIcon,route: homePageRoute,textIdent: ['common', 'home'],},
-      { icon: SearchIcon, route: searchPageRoute, textIdent:['common','explore'], },
-      { icon: AddIcon, route: addPageRoute, textIdent: ['common','addPost'], },
-      { icon: FavoriteIcon, route: favoritePageRoute, textIdent: ['common','favorite'], },
-      { icon: ProfileIcon, route: profilePageRoute, textIdent: ['common','profile'], },
+      { icon: HomeIcon,route: homePageRoute,textIdent: ['common', 'home'],id:'1'},
+      { icon: SearchIcon, route: searchPageRoute, textIdent:['common','explore'], id:'2'},
+      {
+        icon: AddIcon,
+        route: '#',
+        textIdent: ['common', 'addPost'],
+        action: 'toggleNewPost',
+        id:'3'
+      },
+      { icon: FavoriteIcon, route: favoritePageRoute, textIdent: ['common','favorite'],id:'4' },
+      { icon: ProfileIcon, route: profilePageRoute, textIdent: ['common','profile'],id:'5' },
      
     ],
   },

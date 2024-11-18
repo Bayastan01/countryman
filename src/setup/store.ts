@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer, PersistConfig,persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import * as SideMenuFeature from '../features/sideMenu';
+import * as NewPostFeature from '../features/newPost';
 import * as LocaleFeature from '../features/locale'
 import * as AuthFeature from '../features/auth'
 
@@ -11,13 +12,13 @@ export interface IApplicationState {
   auth: AuthFeature.types.IAuthState
   sideMenu: SideMenuFeature.types.ISideMenuState;
   locale: LocaleFeature.types.ILocaleState
-  
+  newPost: NewPostFeature.types.INewPostState;
 }
 
 const persistConfig: PersistConfig<IApplicationState> = {
   key: 'partner',
   storage,
-  whitelist: ['sideMenu','auth','locale'],
+  whitelist: ['auth','locale'],
 };
 
 type ConfigureStore = {
@@ -30,6 +31,7 @@ export function configureAppStore(): ConfigureStore {
   const reducer = combineReducers({
     auth: AuthFeature.reducer,
     sideMenu: SideMenuFeature.reducer,
+    newPost: NewPostFeature.reducer,
     locale: LocaleFeature.reducer,
   });
 

@@ -1,0 +1,100 @@
+@import 'shared/style/var.scss';
+
+// Small Modal Styles
+.rs-modal-sm {
+  margin: 12% auto 0 !important;
+
+  .rs-modal-content {
+    padding: 0;
+    min-height: 60vh !important;
+  }
+
+  // Mobile / Tablet Styles
+  @include max-width-tablet {
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+
+    .rs-modal-content {
+      min-height: 100vh !important; // Sets minimum height to 100% of the viewport height
+      display: flex;
+      flex-direction: column;
+      height: 100% !important;
+    }
+  }
+}
+
+// Modal Styles
+.modal {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    background-color: #000000;
+    padding: 10px 5px;
+    border-radius: 5px 5px 0 0;
+
+    @include max-width-tablet {
+      border-radius: 0;
+    }
+
+    &-next-btn {
+      background: none;
+      border: none;
+      color: $blue-dark;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 0.2rem;
+      transition: 0.2s;
+      font-weight: 600;
+
+      &:hover {
+        opacity: 1;
+        color: $white-color;
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      flex: 1;
+      color: $white-color;
+
+      @include max-width-tablet {
+        font-size: 15px;
+      }
+    }
+  }
+
+  &__body {
+    padding: 20px;
+    align-items: center;
+
+    &-loader {
+      text-align: center;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: #f7f7f7;
+
+    &-close-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}

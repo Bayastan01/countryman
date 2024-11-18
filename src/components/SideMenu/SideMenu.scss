@@ -114,7 +114,11 @@
     display: none;
   }
  }
-
+ &_itemPorstBtn{
+  &:hover{
+    background-color: $blue-dark;
+  }
+}
   &__item {
     display: flex;
     align-items: center;

@@ -1,26 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function useScrollDirection() {
-  const [scrollDirection, setScrollDirection] = useState<"header" | "down" | null>(null);
+interface UseDeviceDetectionReturn {
+  isMobile: boolean;
+  isModalVisible: boolean;
+  setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const useDeviceDetection = (): UseDeviceDetectionReturn => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const updateScrollDirection = () => {
-      const scrollY = window.scrollY;
-      const direction = scrollY > lastScrollY ? "down" : "header";
-      if (direction !== scrollDirection && (Math.abs(scrollY - lastScrollY) > 10)) {
-        setScrollDirection(direction);
-      }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Устройство мобильное, если ширина экрана меньше или равна 768px
     };
 
-    window.addEventListener("scroll", updateScrollDirection);
+    const handleMouseLeave = () => {
+      if (isMobile) {
+        setIsModalVisible(false); // Не показывать модалку на мобильных
+        startCamera();  // Запускаем камеру на мобильных устройствах
+      } else {
+        setIsModalVisible(true); // Показывать модалку на десктопе
+      }
+    };
+
+    handleResize(); // Проверяем тип устройства сразу после загрузки
+    window.addEventListener('resize', handleResize); // Обработчик изменения размера окна
+    document.addEventListener('mouseleave', handleMouseLeave); // Обработчик для выхода курсора
 
     return () => {
-      window.removeEventListener("scroll", updateScrollDirection);
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [scrollDirection]);
+  }, [isMobile]);
 
-  return scrollDirection;
-}
+  return { isMobile, isModalVisible, setIsModalVisible };
+};
+
+export default useDeviceDetection;

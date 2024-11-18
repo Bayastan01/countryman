@@ -11,7 +11,7 @@ import SignUpIcon from '../../shared/image/home.svg';
 import SignInIcon from '../../shared/image/favorite.svg';
 import { selectIsUserAuthenticated } from '../../features/auth/selectors'
 import './Header.scss';
-import { InputSearch } from '../../components/Input/Input';
+import { InputSearch } from '../../components/universalСomponents/Input/Input';
 const b = block('header');
 
 const Header: React.FC = () => {

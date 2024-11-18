@@ -3,7 +3,7 @@ import * as actions from '../actions'
 import { ISideMenuState } from '../types'
 
 const initialState: ISideMenuState = {
-  isOpen: true,
+  isOpen: false,
 }
 
 export default createReducer(initialState, builder => {

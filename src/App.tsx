@@ -9,6 +9,7 @@ import { selectOpenedSideMenu } from './features/sideMenu/selectors'
 import  Header  from './components/Header/Header'
 import { ToastContainer } from 'react-toastify'
 import { Loader } from 'rsuite'
+import NewPostModal from 'components/CreateNewPost/NewPostModal';
 const b = block('app')
 interface MyComponentProps {
   children: ReactNode;
@@ -24,7 +25,9 @@ const App: React.FC<MyComponentProps> = ({children}) => {
         <Header />
              <SideMenu/>
             <Suspense fallback={<Loader center size="md" content="loading..." vertical />}>
-             <main className={b('main-content')}>{children}</main>
+             <main className={b('main-content')}> 
+             <NewPostModal/>
+             {children}</main>
             </Suspense>
         </div>
     </div>

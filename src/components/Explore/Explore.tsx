@@ -56,8 +56,8 @@ const Explore: React.FC = () => {
       </div>
       <div className="grid">
         {filteredItems.length > 0 ? (
-          filteredItems.map((item) => (
-            <div key={item.title} className="app-item">
+          filteredItems.map((item,index) => (
+            <div key={index} className="app-item">
               <div className="icon">{item.icon}</div>
               <div className="title">{item.title}</div>
               <div className="category">{item.category}</div>

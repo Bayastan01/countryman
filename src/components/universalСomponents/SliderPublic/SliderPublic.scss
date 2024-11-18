@@ -1,0 +1,72 @@
+@import 'shared/style/var.scss';
+
+.carouselContainer {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+
+    &__carouselSlide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 220px;
+      background-color: #f0f0f0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    }
+
+    &__slick-dots {
+      bottom: -30px;
+
+      li button:before {
+        font-size: 8px; // Исправлено с 2px на 8px для лучшей видимости
+        color: #1900ff;
+      }
+
+      li.slick-active button:before {
+        color: #e3990f;
+      }
+    }
+
+    &__slick-prev,
+    &__slick-next {
+      font-size: 0;
+      color: transparent;
+
+      &:before {
+        font-size: 30px;
+        color: black;
+      }
+    }
+
+    &__slick-prev {
+      left: -40px;
+    }
+
+    &__slick-next {
+      right: -40px;
+    }
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: 200px;
+
+      &__img {
+        max-height: 200px;
+      }
+
+      &__carouselSlide {
+        height: 200px;
+      }
+    }
+  }
