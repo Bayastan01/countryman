@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import './Explore.scss';
 import Categories from './Categories/Categories';
+import { Link } from 'react-router-dom';
 
 interface AppItem {
   title: string;
   category: string;
   icon: string;
   isNew?: boolean;
+  route?: string;
+  id:number
 }
 
 const appItems: AppItem[] = [
-  { title: 'Афиша', category: 'Мероприятия', icon: '📅' },
-  { title: 'YCLIENTS', category: 'Инструменты', icon: '⚒️' },
-  { title: 'Натальная карта', category: 'Выбор редакции', icon: '🗺️', isNew: true },
-  { title: 'Открытки и поздравления', category: 'Развлечения', icon: '💐' },
-  { title: 'Тест на СДВГ', category: 'Медицина', icon: '❤️', isNew: true },
-  { title: 'Tool 42', category: 'Инструменты', icon: '🛠️' },
-  { title: 'Сбор файлов', category: 'Инструменты', icon: '🗂️' },
-  { title: 'Матчи', category: 'Спорт', icon: '⚽' },
-  { title: 'Фильмы по эмодзи', category: 'Развлечения', icon: '🎬' },
-  { title: 'Рандомный розыгрыш', category: 'Инструменты', icon: '🎲' },
-  { title: 'Песня моего ДР', category: 'Развлечения', icon: '🎉' },
-  { title: 'QR-конструктор', category: 'Бизнес', icon: '🔗' },
+  {id:1, route: "taxi" , title: 'Такси', category: 'Путевой лист', icon: '🚕' },
+  {id:2, route: "yni" , title: 'YCLIENTS', category: 'Инструменты', icon: '⚒️' },
+  // {id:3, route: map , title: 'Натальная карта', category: 'Выбор редакции', icon: '🗺️', isNew: true },
+  // {id:4, route: happy , title: 'Открытки и поздравления', category: 'Развлечения', icon: '💐' },
+  // {id:5, route: test , title: 'Тест на СДВГ', category: 'Медицина', icon: '❤️', isNew: true },
+  // {id:6, route: tool , title: 'Tool 42', category: 'Инструменты', icon: '🛠️' },
+  // {id:7, route: sbor , title: 'Сбор файлов', category: 'Инструменты', icon: '🗂️' },
+  // {id:8, route: match , title: 'Матчи', category: 'Спорт', icon: '⚽' },
+  // {id:9, route: filme , title: 'Фильмы по эмодзи', category: 'Развлечения', icon: '🎬' },
+  // {id:10, route: sd , title: 'Рандомный розыгрыш', category: 'Инструменты', icon: '🎲' },
+  // {id:11, route: sf , title: 'Песня моего ДР', category: 'Развлечения', icon: '🎉' },
+  // {id:12, route: sff , title: 'QR-конструктор', category: 'Бизнес', icon: '🔗' },
 ];
 
 // Список категорий для фильтрации
@@ -57,12 +60,14 @@ const Explore: React.FC = () => {
       <div className="grid">
         {filteredItems.length > 0 ? (
           filteredItems.map((item,index) => (
-            <div key={index} className="app-item">
-              <div className="icon">{item.icon}</div>
-              <div className="title">{item.title}</div>
-              <div className="category">{item.category}</div>
-              {item.isNew && <div className="new-badge">NEW</div>}
-            </div>
+            <Link key={item.route} to={item.route}>
+              <div key={index} className="app-item">
+                <div className="icon">{item.icon}</div>
+                <div className="title">{item.title}</div>
+                <div className="category">{item.category}</div>
+                {item.isNew && <div className="new-badge">NEW</div>}
+              </div>
+            </Link>
           ))
         ) : (
           <div className="no-results">Нет результатов для выбранной категории</div>

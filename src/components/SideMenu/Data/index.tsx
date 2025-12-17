@@ -36,7 +36,7 @@ export const sideMenuList: ILinkMenuBlock[] = [
       { icon: SearchIcon, route: searchPageRoute, textIdent:['common','explore'], id:'2'},
       {
         icon: AddIcon,
-        route: '#',
+        route: 'add',
         textIdent: ['common', 'addPost'],
         action: 'toggleNewPost',
         id:'3'

@@ -1,62 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Loader } from 'rsuite';
-import { IIcon } from '../IIcon/IIcon';
-import './Modals.scss';
+import React, { useState } from 'react';
+import { Modal, Box, Typography, Button, useMediaQuery } from '@mui/material';
 
-type IconType = 'arrow-left' | 'close' | 'check';
-
-interface ModalProps<T> {
-  isVisible: boolean;
-  state: T | null;
-  onClose: () => void;
-  renderContent: (state: T | null) => React.ReactNode;
-  placeholder?: string;
-  name: IconType;
+interface ModalsProps {
+  children: React.ReactNode;
+  open: boolean;
+  Close: () => void;
 }
 
-export const Modals = <T,>({
-  isVisible,
-  state,
-  onClose,
-  renderContent,
-  placeholder = 'Default Title',
-  name
-}: ModalProps<T>) => {
-  const [rows, setRows] = useState(0);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => setRows(80), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
+const Modals: React.FC<ModalsProps> = ({ children, open, Close }) => {
+  // Определяем, используется ли мобильное устройство
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   return (
-    <Modal
-      open={isVisible}
-      onClose={onClose}
-      style={{ padding: 0 }}
-      className={`modal ${isVisible ? 'open' : ''}`}
-    >
-      <div className="modal__header">
-        <IIcon
-          name={name}
-          iconBGColor="white"
-          sizes="2rem"
-          onClick={onClose}
-        />
-        <span className="modal__header-title">{placeholder}</span>
-        <button className="modal__header-next-btn" onClick={onClose}>
-          Далее
-        </button>
-      </div>
-      <Modal.Body className="modal__body">
-        {rows ? renderContent(state) : (
-          <div className="modal__body-loader">
-            <Loader size="md" />
-          </div>
-        )}
-      </Modal.Body>
-    </Modal>
+    <div>
+      <Modal
+        open={open}
+        onClose={Close}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 99,
+        }}
+      >
+        <Box
+          sx={{
+            width: isMobile ? '80%' : '80%', // 90% ширины для мобильных, 80% для десктопов
+            height: isMobile ? '80%' : '80%', // 90% высоты для мобильных, 80% для десктопов
+            bgcolor: 'background.paper',
+            borderRadius: isMobile ? '0' : '8px', // Без закруглений на мобильных
+            boxShadow: 24,
+            p: isMobile ? 2 : 4,
+            textAlign: 'center',
+            overflow: 'auto', // Убедимся, что контент не выходит за рамки
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          {children}
+        </Box>
+      </Modal>
+    </div>
   );
 };
+
+export default Modals;

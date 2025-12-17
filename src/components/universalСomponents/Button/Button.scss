@@ -1,0 +1,33 @@
+.button {
+    &__button-container {
+      // height: 2.5rem;
+    //   width: 100%;
+      button {
+        padding: 0.2rem 1rem;
+        border-radius: 3px;
+        cursor: pointer;
+        line-height: 1.25;
+        text-decoration: none;
+        border-width: 2px;
+        white-space: nowrap;
+        background-color: --rs-btn-primary-bg;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 22px;
+        transition-duration: 0.1s;
+        // width: 100%;
+        &:hover {
+        //   background-color: #2d3748;
+          color:white
+        }
+        &:focus {
+        //   background-color: #2d3748;
+        }
+      }
+      &_uppercase button {
+        text-transform: uppercase !important;
+      }
+    }
+  }
+  

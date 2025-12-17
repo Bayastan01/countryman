@@ -14,7 +14,8 @@ export const common = {
     changeWebsiteInfo: 'Modifier les informations du site Web',
     deleteWebsite: 'Supprimer le site Web',
     areYouWantDelete: 'Voulez-vous supprimer ce site?',
-  
+    publickPost:'publick post',
+    next:'NExtPage',
     parisSportif: 'Paris sportif',
     info: 'Info',
     search: 'Search',

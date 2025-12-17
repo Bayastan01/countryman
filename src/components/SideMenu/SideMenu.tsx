@@ -15,27 +15,45 @@ import CrossIcon from '../../shared/image/burger.svg';
 
 const b = block('side-menu');
 
+// -------------------- Handlers --------------------
+
+const useToggleSideMenu = (dispatch, isSideMenuOpened) =>
+  useCallback(() => dispatch(sideMenuActions.changeOpenedSideMenu(!isSideMenuOpened)), [dispatch, isSideMenuOpened]);
+
+const useToggleNewPost = (dispatch, isNewPostOpened) =>
+  useCallback(() => dispatch(newPostActions.changeOpenedNewPost(!isNewPostOpened)), [dispatch, isNewPostOpened]);
+
+const useHandleMenuItemAction = (item, isNewPostOpened, dispatch) =>
+  useCallback(() => {
+    if (item?.action === 'toggleNewPost') {
+      dispatch(newPostActions.changeOpenedNewPost(!isNewPostOpened));
+    } else {
+      dispatch(newPostActions.changeOpenedNewPost(false));
+    }
+  }, [item?.action, isNewPostOpened, dispatch]);
+
+// -------------------- Components --------------------
+
 const SideMenuItem = React.memo(({ item, isSideMenuOpened, locale, location }) => {
   const dispatch = useDispatch();
   const isNewPostOpened = useSelector(selectOpenedNewPost);
 
-  const handleAction = useCallback(() => {
-    if (item.action === 'toggleNewPost') {
-      dispatch(newPostActions.changeOpenedNewPost(!isNewPostOpened));
-    }
-  }, [item.action, isNewPostOpened, dispatch]);
+  const handleAction = useHandleMenuItemAction(item, isNewPostOpened, dispatch);
 
-  const isActive = location.pathname === item.route;
+  const isActive = location.pathname === item?.route;
 
   return (
-    <div className={b('link')}>
+    <div className={b('link')} onClick={handleAction}>
       <Link
-        to={item.route || '#'}
-        className={b(item.icon === 'AddIcon' ? 'itemPorstBtn' : 'item', { closed: !isSideMenuOpened, active: isActive }).toString()}
-        onClick={handleAction}
+        to={item?.route || '#'}
+        className={b(item?.icon === 'AddIcon' ? 'itemPostBtn' : 'item', { closed: !isSideMenuOpened, active: isActive }).toString()}
       >
-        {item.icon && <img src={item.icon} className={b('item-icon')} alt="Icon" />}
-        <div className={b('item-text')}>{locale[item.textIdent[0]][item.textIdent[1]]}</div>
+        {item?.icon && <img src={item.icon} className={b('item-icon')} alt="Icon" />}
+        {item?.textIdent && (
+          <div className={b('item-text')}>
+            {locale?.[item.textIdent[0]]?.[item.textIdent[1]] || 'Unnamed'}
+          </div>
+        )}
       </Link>
     </div>
   );
@@ -58,20 +76,15 @@ const SideMenuBlock = React.memo(({ block, isSideMenuOpened, locale, location })
 ));
 
 const SideMenu = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
+  const location = useLocation();
   const isSideMenuOpened = useSelector(selectOpenedSideMenu, shallowEqual);
   const isNewPostOpened = useSelector(selectOpenedNewPost, shallowEqual);
   const locale = useSelector(selectLocaleDict, shallowEqual);
   const isAuth = useSelector(selectIsUserAuthenticated, shallowEqual);
 
-  const toggleSideMenu = useCallback(() => {
-    dispatch(sideMenuActions.changeOpenedSideMenu(!isSideMenuOpened));
-  }, [isSideMenuOpened, dispatch]);
-
-  const toggleNewPost = useCallback(() => {
-    dispatch(newPostActions.changeOpenedNewPost(!isNewPostOpened));
-  }, [isNewPostOpened, dispatch]);
+  const toggleSideMenu = useToggleSideMenu(dispatch, isSideMenuOpened);
+  const toggleNewPost = useToggleNewPost(dispatch, isNewPostOpened);
 
   const menuBlocks = useMemo(
     () =>
@@ -102,9 +115,11 @@ const SideMenu = () => {
           <div className={b('openLogo', { closed: !isSideMenuOpened })}>
             <img src={MainLogoIcon} alt="Logo" />
             <span
-              className={b('openLogo-title')}
+              className={b('openLogo-title', {
+                red: isNewPostOpened,
+                blue: !isNewPostOpened,
+              })}
               onClick={toggleNewPost}
-              style={{ color: isNewPostOpened ? 'red' : 'blue' }}
             >
               JerDesh
             </span>

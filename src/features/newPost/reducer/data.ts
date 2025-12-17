@@ -3,7 +3,7 @@ import { changeOpenedNewPost }  from '../actions'
 import { INewPostState } from '../types'
 
 const initialState: INewPostState = {
-  isOpen: false,
+  isOpen: true,
 };
 
 export default createReducer(initialState, builder => {

@@ -1,4 +1,4 @@
-import { locale } from '../../../shared/locale/ru-ru-'
+import { locale } from '../../../shared/locale/ru-ru'
 
 import { createReducer } from '@reduxjs/toolkit'
 import { ILocaleState } from '../type'
